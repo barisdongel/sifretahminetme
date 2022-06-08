@@ -26,10 +26,10 @@ if (isset($_POST['encrypt'])) {
 
     for ($i = 0; $i < count($kelimeler); $i++) { //kelimeler dizisinin indis sayısı kadar dön
         $c[] = trim($kelimeler[$i]); //kelimeler.txt dosyasında ki boşlukları silip diziye atadık
-        $j = $i % 26;
-        $d = explode(" ", $new[$j]);
-        for ($k = 0; $k <= count($d); $k++) {
-            if (in_array($d[$k], $c)) {
+        $j = $i % 26;//i'nin 26 ya göre modunu alıyoruz
+        $d = explode(" ", $new[$j]);//new içinde ki kelimeleri boşluklardan ayırarak diziye atıyoruz
+        for ($k = 0; $k <= count($d); $k++) {//$d uzunluğu kadar dön
+            if (in_array($d[$k], $c)) {//$d nin $k'nıncı elemanı $c dizisinde var mı kontrolu
                 echo $d[$k] . " bulundu.";
                 header("Location:index.php?sifre=" . $new[$j]);
                 break;
