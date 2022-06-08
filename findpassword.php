@@ -5,6 +5,7 @@ if (isset($_POST['encrypt'])) {
     /*Bu kısım sezar şifreleme */
     $sifre = $_POST['password']; //şifremiz
     $alphabet = range('a', 'z'); //a'dan z'ye kadar dizi
+
     $cryptoAlphabet = array(); //harfleri şifre de ki harfler ile değiştirecek boş dizi
     $new = array(); //şifrelenmiş verileri tutacağımız dizi
 
@@ -19,17 +20,20 @@ if (isset($_POST['encrypt'])) {
         array_push($new, $cryptedData); //şifrelenmiş verimizi $new arrayine atıyoruz.
         $sifre = $new[$j]; //şifreyi $new'in $j'ninci elemanı ile değiştiriyoruz.
     }
-    /*sezar şifreleme son*/
 
+    /*sezar şifreleme son*/
     $kelimeler = file('kelimeler.txt'); //kelimeler.txt dosyasında ki her bir kelimeyi array'e atama
 
-    for ($i = 0; $i < count($kelimeler); $i++) {//kelimeler dizisinin indis sayısı kadar dön
-        $c[] = trim($kelimeler[$i]);//kelimeler.txt dosyasında ki boşlukları silip diziye atadık
+    for ($i = 0; $i < count($kelimeler); $i++) { //kelimeler dizisinin indis sayısı kadar dön
+        $c[] = trim($kelimeler[$i]); //kelimeler.txt dosyasında ki boşlukları silip diziye atadık
         $j = $i % 26;
-        if (in_array($new[$j], $c)) {
-            echo $new[$j] . " bulundu.";
-            header("Location:index.php?sifre=" . $new[$j]);
-            break;
+        $d = explode(" ", $new[$j]);
+        for ($k = 0; $k <= count($d); $k++) {
+            if (in_array($d[$k], $c)) {
+                echo $d[$k] . " bulundu.";
+                header("Location:index.php?sifre=" . $new[$j]);
+                break;
+            }
         }
     }
 }
