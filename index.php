@@ -16,14 +16,10 @@
             <h2 class="display-4 text-center mb-5 pb-5">PHP ENCRYPTPING AND DECRYPTING APP</h2>
             <div class="col-md-12">
 
-                <form action="crypting.php" method="POST">
+                <form action="findpassword.php" method="POST">
                     <div class="mb-3">
                         <label class="form-label">What do you want to encrypt ?</label>
                         <input type="text" name="password" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Key Value</label>
-                        <input type="text" name="key" class="form-control">
                     </div>
                     <button type="submit" name="encrypt" class="btn btn-info text-white rounded-0">Encrypt</button>
                 </form>
@@ -34,8 +30,8 @@
                 <br>
                 <label class="form-label fw-bold border-bottom text-success">
                     <?php 
-                    if (!empty($_GET['encryptedtext'])) {
-                        echo "DECRYPTED TEXT : " . base64_decode($_GET['encryptedtext']);
+                    if (!empty($_GET['sifre'])) {
+                        echo "DECRYPTED TEXT : " .$_GET['sifre'];
                     } else {
                         echo '';
                     }
